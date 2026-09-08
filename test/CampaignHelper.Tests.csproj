@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4"><PrivateAssets>all</PrivateAssets></PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../CampaignGuide.cs" Link="Production/CampaignGuide.cs" />
+    <Compile Include="../CampaignProgress.cs" Link="Production/CampaignProgress.cs" />
+    <Compile Include="../GuideUpdater.cs" Link="Production/GuideUpdater.cs" />
+    <Compile Include="../GuideDataBootstrap.cs" Link="Production/GuideDataBootstrap.cs" />
+    <Compile Include="../PendingTaskDrain.cs" Link="Production/PendingTaskDrain.cs" />
+    <Compile Include="../UpdateSchedule.cs" Link="Production/UpdateSchedule.cs" />
+    <Compile Include="../CampaignUiGate.cs" Link="Production/CampaignUiGate.cs" />
+    <Compile Include="../CampaignUiText.cs" Link="Production/CampaignUiText.cs" />
+    <Compile Include="../CampaignUpdateNotice.cs" Link="Production/CampaignUpdateNotice.cs" />
+    <Compile Include="../BoundedTextFile.cs" Link="Production/BoundedTextFile.cs" />
+    <Compile Include="../GuideInstallation.cs" Link="Production/GuideInstallation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../Data/guide.json" Link="Data/guide.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../Data/areas.json" Link="Data/areas.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

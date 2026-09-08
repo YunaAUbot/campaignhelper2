@@ -16,12 +16,19 @@ Requires the .NET 10 SDK and a GameHelper2 checkout.
 ```bash
 export GAMEHELPER2_HOST_ROOT=/path/to/GameHelper2
 
-dotnet test CampaignHelper.Tests/CampaignHelper.Tests.csproj -c Release
-dotnet build CampaignHelper/CampaignHelper.csproj -c Release -p:EnableWindowsTargeting=true
+dotnet test test/CampaignHelper.Tests.csproj -c Release
+dotnet build CampaignHelper.csproj -c Release -p:EnableWindowsTargeting=true
 ```
 
 The real in-game comparison remains the final acceptance gate for UI changes.
 
 ## License
 
-GPL-3.0-or-later. See `LICENSE` and `CampaignHelper/Data/PROVENANCE.md`.
+GPL-3.0-or-later. See `LICENSE` and `Data/PROVENANCE.md`.
+
+## Repository layout verification
+
+Production source and the plugin project live at repository root; tests and any
+auxiliary tools belong under `test/`. See [ROOT_LAYOUT.md](ROOT_LAYOUT.md) for the
+verified Git importer contract, test commands, and builds against an already-built
+GameHelper2 host without modifying it.
