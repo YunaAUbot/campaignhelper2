@@ -16,6 +16,8 @@ public sealed class CampaignHelperCore : PCore<CampaignHelperSettings>
     private static readonly Vector4 TipColor = new(.58f, .74f, .88f, 1f);
 
     private CampaignGuide? guide;
+    private CampaignGuide? knownAreasGuide;
+    private IReadOnlySet<string> knownAreaIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     private readonly CampaignProgress progress = new();
     private GuideUpdater? updater;
     private UpdateCandidate? candidate;
@@ -128,12 +130,17 @@ public sealed class CampaignHelperCore : PCore<CampaignHelperSettings>
             return;
         }
 
+        if (!ReferenceEquals(this.knownAreasGuide, this.guide))
+        {
+            this.knownAreaIds = this.guide.Areas.Keys.ToHashSet(StringComparer.OrdinalIgnoreCase);
+            this.knownAreasGuide = this.guide;
+        }
         var area = Core.States.InGameStateObject.CurrentWorldInstance.AreaDetails;
         var areaId = area.Id;
         var canDrawCampaign = CampaignUiGate.CanDraw(
             Core.States.GameCurrentState == GameStateTypes.InGameState,
             areaId,
-            guide.Areas.Keys.ToHashSet(StringComparer.OrdinalIgnoreCase));
+            this.knownAreaIds);
         if (!canDrawCampaign)
         {
             DrawDetachedUpdateNotice(false);
